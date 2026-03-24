@@ -8,5 +8,6 @@ $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 match($uri) {
     '/' => homePage(),
     '/backend' => backendPage(),
+    '/backend/login' => loginPage(),
     default => notFound()
 };
