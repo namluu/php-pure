@@ -9,5 +9,6 @@ match($uri) {
     '/' => home_page(),
     '/backend' => backend_page(),
     '/backend/login' => login_page(),
+    '/backend/logout' => logout_action(),
     default => not_found()
 };

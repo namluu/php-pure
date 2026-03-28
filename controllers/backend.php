@@ -26,3 +26,9 @@ function login_page()
 
     require 'templates/backend/login.php';
 }
+
+function logout_action(): void
+{
+    session_destroy();
+    header("Location: /backend/login");
+}
