@@ -6,8 +6,8 @@ require_once 'models/database.php';
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 match($uri) {
-    '/' => homePage(),
-    '/backend' => backendPage(),
-    '/backend/login' => loginPage(),
-    default => notFound()
+    '/' => home_page(),
+    '/backend' => backend_page(),
+    '/backend/login' => login_page(),
+    default => not_found()
 };
