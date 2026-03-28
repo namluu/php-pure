@@ -42,3 +42,72 @@ function get_pwd_from_db($username)
 
     return $row;
 }
+
+function get_categories()
+{
+    $connection = open_database_connection();
+    
+    $statement = $connection->query('SELECT * FROM cms_category');
+    $statement->execute();
+    
+    $rows = $statement->fetchAll(PDO::FETCH_OBJ);
+
+    close_database_connection($connection);
+
+    return $rows;
+}
+
+function get_category($id)
+{
+    $connection = open_database_connection();
+
+    $statement = $connection->prepare('SELECT * FROM cms_category WHERE id = :id');
+    $statement->bindValue(':id', $id, PDO::PARAM_INT);
+    $statement->execute();
+
+    $row = $statement->fetch(PDO::FETCH_OBJ);
+
+    close_database_connection($connection);
+
+    return $row;
+}
+
+function save_category($data): bool
+{
+    $connection = open_database_connection();
+
+    $statement = $connection->prepare('INSERT INTO cms_category (title, content) VALUES (:title, :content)');
+    $statement->bindValue(':title', $data['title']);
+    $statement->bindValue(':content', $data['content']);
+    $affected = $statement->execute();
+
+    close_database_connection($connection);
+
+    return $affected;
+}
+
+function update_category($data, $id): bool
+{
+    $connection = open_database_connection();
+
+    $statement = $connection->prepare('UPDATE cms_category SET title = :title, content = :content WHERE id = :id');
+    $statement->bindValue(':title', $data['title']);
+    $statement->bindValue(':content', $data['content']);
+    $statement->bindValue(':id', $id, PDO::PARAM_INT);
+    $affected = $statement->execute();
+
+    close_database_connection($connection);
+
+    return $affected;
+}
+
+function delete_category($id)
+{
+    $connection = open_database_connection();
+
+    $statement = $connection->prepare('DELETE FROM cms_category WHERE id = :id');
+    $statement->bindValue(':id', $id, PDO::PARAM_INT);
+    $affected = $statement->execute();
+    close_database_connection($connection);
+    return $affected;
+}
