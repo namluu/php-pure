@@ -1,24 +1,24 @@
 <?php
 session_start();
 
-function backendPage()
+function backend_page()
 {
-    checkAuthentication();
+    check_authentication();
     require 'templates/backend/dashboard.php';
 }
 
-function checkAuthentication()
+function check_authentication()
 {
     if (!isset($_SESSION['username'])) {
         header("Location: /backend/login");
     }
 }
 
-function loginPage()
+function login_page()
 {
     if (isset($_POST['username'])) {
-        $user = getLoginUser($_POST['username'], $_POST['password']);
-        if ($user) {
+        $pwd_hashed = get_pwd_from_db($_POST['username']);
+        if (password_verify($_POST['password'], $pwd_hashed)) {
             $_SESSION['username'] = $_POST['username'];
             header("Location: /backend");
         }

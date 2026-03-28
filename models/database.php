@@ -1,17 +1,17 @@
 <?php
-function openDatabaseConnection()
+function open_database_connection()
 {
     return new PDO("mysql:host=db;dbname=wordpress", 'wordpress', 'wordpress');
 }
 
-function closeDatabaseConnection(&$connection)
+function close_database_connection(&$connection)
 {
     $connection = null;
 }
 
-function getLoginUser($username, $password)
+function get_login_user($username, $password)
 {
-    $connection = openDatabaseConnection();
+    $connection = open_database_connection();
 
     $statement = $connection->prepare('SELECT id, username FROM admin WHERE username = :username AND password = :password AND status = 1');
     $statement->bindValue(':username', $username, PDO::PARAM_STR);
@@ -20,7 +20,25 @@ function getLoginUser($username, $password)
     
     $row = $statement->fetch(PDO::FETCH_ASSOC);
 
-    closeDatabaseConnection($connection);
+    close_database_connection($connection);
+
+    return $row;
+}
+
+/**
+ * More secure
+ */
+function get_pwd_from_db($username)
+{
+    $connection = open_database_connection();
+
+    $statement = $connection->prepare('SELECT password FROM admin WHERE username = :username AND status = 1');
+    $statement->bindValue(':username', $username, PDO::PARAM_STR);
+    $statement->execute();
+    
+    $row = $statement->fetch(PDO::FETCH_COLUMN);
+
+    close_database_connection($connection);
 
     return $row;
 }
