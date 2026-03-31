@@ -9,7 +9,7 @@ $editCategoryId = matchUrlParam($uri, '#^/backend/category/edit/(\d+)$#');
 $deleteCategoryId = matchUrlParam($uri, '#^/backend/category/delete/(\d+)$#');
 
 match (true) {
-    $uri === '/' => home_page(),
+    $uri === '' => home_page(),
     $uri === '/backend' => backend_page(),
     $uri === '/backend/login' => login_page(),
     $uri === '/backend/logout' => logout_action(),

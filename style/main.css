@@ -1,0 +1,67 @@
+@font-face {
+    font-family: 'UTM Bebas';
+    src: url(../font/UTM_Bebas.woff2) format('woff2'), url(../font/UTM_Bebas.woff) format('woff'), url(../font/UTM_Bebas.ttf) format('truetype'), url(../font/UTM_Bebas.eot?) format('embedded-opentype'), url(../font/UTM_Bebas.svg#UTM_Bebas) format('svg');
+}
+body {
+    font-family: Tahoma;
+}
+ul, h1 {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+a {
+    text-decoration: none;
+}
+.wp1000 {
+    width: 1000px;
+    margin: 0 auto;
+}
+.header {
+    width: 100%;
+    clear: both;
+}
+.sharetop {
+    float: right;
+    margin-top: 20px;
+}
+.header .menu {
+    height: 57px;
+    float: left;
+    background: #ec5f5f;
+    width: 100%;
+    margin-top: 3px;
+    position: relative;
+    clear: both;
+}
+.header .logo {
+    float: left;
+    margin: -22px 10px 0 -20px;
+    position: relative;
+    height: 78px;
+    width: 232px;
+}
+.logo h1 {
+    height: 78px;
+}
+.header .logo a {
+    width: 225px;
+    height: 79px;
+    float: left;
+    background: url(../images/gamek_logo_30052022.svg) no-repeat;
+    background-size: 165px 71px;
+    background-color: #da5550;
+    background-position: center;
+}
+.menu ul li.normal {
+    float: left;
+    padding: 0 10px;
+    line-height: 52px;
+}
+.menu ul li a {
+    font-size: 23px;
+    font-family: UTM Bebas;
+    text-transform: uppercase;
+    font-weight: normal;
+    color: #fff;
+}
