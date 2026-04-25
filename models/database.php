@@ -111,3 +111,47 @@ function delete_category($id)
     close_database_connection($connection);
     return $affected;
 }
+
+function get_posts()
+{
+    $connection = open_database_connection();
+    
+    $statement = $connection->query('SELECT * FROM cms_post');
+    $statement->execute();
+    
+    $rows = $statement->fetchAll(PDO::FETCH_OBJ);
+
+    close_database_connection($connection);
+
+    return $rows;
+}
+
+function get_post($id)
+{
+    $connection = open_database_connection();
+
+    $statement = $connection->prepare('SELECT * FROM cms_post WHERE id = :id');
+    $statement->bindValue(':id', $id, PDO::PARAM_INT);
+    $statement->execute();
+
+    $row = $statement->fetch(PDO::FETCH_OBJ);
+
+    close_database_connection($connection);
+
+    return $row;
+}
+
+function save_post($data): bool
+{
+    $connection = open_database_connection();
+
+    $statement = $connection->prepare('INSERT INTO cms_post (title, content, category_id) VALUES (:title, :content, :category_id)');
+    $statement->bindValue(':title', $data['title']);
+    $statement->bindValue(':content', $data['content']);
+    $statement->bindValue(':category_id', $data['category_id']);
+    $affected = $statement->execute();
+
+    close_database_connection($connection);
+
+    return $affected;
+}

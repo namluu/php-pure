@@ -2,6 +2,7 @@
 <?php ob_start() ?>
 <ul>
     <li><a href="/backend/category">Manage Category</a></li>
+    <li><a href="/backend/post">Manage Post</a></li>
 </ul>
 <?php $content = ob_get_clean() ?>
 

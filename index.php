@@ -15,6 +15,8 @@ match (true) {
     $uri === '/backend/logout' => logout_action(),
     $uri === '/backend/category' => category_page(),
     $uri === '/backend/category/new' => category_new(),
+    $uri === '/backend/post' => post_page(),
+    $uri === '/backend/post/new' => post_new(),
     $editCategoryId !== null => category_edit($editCategoryId),
     $deleteCategoryId !== null => category_delete($deleteCategoryId),
     default => not_found()
